@@ -1,22 +1,14 @@
 package controller.category;
 
-import dao.ProductCategoryDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pojo.ProductCategory;
-import pojo.User;
 import service.ProductCategoryService;
-import service.UserService;
 import util.ErrorMessage;
 import vo.ProductCategoryVo;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/categories")

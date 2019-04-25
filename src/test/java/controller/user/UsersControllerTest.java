@@ -1,10 +1,8 @@
 package controller.user;
 
-import base.BaseTest;
 import base.MockMvcBaseTest;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.hamcrest.Matcher;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,8 +12,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import pojo.User;
-
-import static org.junit.Assert.*;
 
 public class UsersControllerTest extends MockMvcBaseTest {
 

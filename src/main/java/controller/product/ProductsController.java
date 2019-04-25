@@ -1,28 +1,56 @@
 package controller.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import pojo.Product;
-import pojo.User;
 import pojo.page.ProductPage;
+import service.ProductService;
 import service.UserService;
-import util.ErrorMessage;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/products")
 public class ProductsController {
     @Autowired
-    private UserService userService;
+    private ProductService productService;
 
     @GetMapping
-    public List<Product> getProducts(@RequestParam ProductPage page){
+    public List<Product> getProducts(
+            // 这些参数都是可选的
+            @RequestParam(required = false) Integer shopId,
+            @RequestParam(required = false) Integer categoryId,
+            @RequestParam(required = false) Integer minPrice,
+            @RequestParam(required = false) Integer maxPrice,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "MMddyyyy") Date beforeDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "MMddyyyy") Date afterDate,
+            @RequestParam(required = false) Integer pageSize,
+            @RequestParam(required = false) Integer pageNumber){
+        ProductPage page = new ProductPage();
+        page.setShopId(shopId);
+        page.setCategoryId(categoryId);
+        page.setMinPrice(minPrice);
+        page.setMaxPrice(maxPrice);
+        page.setAfterDate(afterDate);
+        page.setBeforeDate(beforeDate);
+        page.setLimit(pageSize);
+        int offset;
+        if (pageNumber == null || pageNumber <= 0){
+            offset = 0;
+        } else {
+            // 如果是第一页，就没有offset
+            offset = (pageNumber - 1) *  pageSize;
+        }
+        page.setOffset(offset);
+        List<Product> products =
+                productService.getProductsPageable(page);
+        return products;
+    }
+
+    @PostMapping
+    private Object publishProduct(@RequestBody Product product){
         return null;
     }
 }

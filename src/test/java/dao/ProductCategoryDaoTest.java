@@ -1,6 +1,5 @@
 package dao;
 
-import base.BaseTest;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

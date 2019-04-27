@@ -14,8 +14,6 @@ public class CategoriesControllerTest extends MockMvcBaseTest {
     public void getSingleProductCategory() throws Exception {
 
         ResultMatcher isOk = MockMvcResultMatchers.status().is(200);
-        ResultMatcher hasCurrentCategory = MockMvcResultMatchers
-                .jsonPath("$.currentCategory").exists();
         ResultMatcher hasChildren = MockMvcResultMatchers
                 .jsonPath("$.children").isArray();
 
@@ -25,7 +23,6 @@ public class CategoriesControllerTest extends MockMvcBaseTest {
         mockMvc.perform(builder)
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(isOk)
-                .andExpect(hasCurrentCategory)
                 .andExpect(hasChildren);
     }
 

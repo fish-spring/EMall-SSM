@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.ProductDao" >
+
+    <resultMap id="resultMap" type="java.util.HashMap">
+
+    </resultMap>
+
+    <select id="selectProductInfoByPrimaryKey" resultType="vo.ProductInfo" parameterType="Integer">
+        select count(*) as remarkCount, avg(score) as avgScore
+        from product_remark
+        where product_id = #{id}
+    </select>
+
+ </mapper>

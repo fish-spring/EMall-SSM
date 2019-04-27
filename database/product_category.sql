@@ -50,4 +50,7 @@ VALUES
        ('100030', '100005', '进口洋酒', '1', null, '2017-03-25 16:57:05', '2017-03-25 16:57:05');
 COMMIT;
 
+insert into product_category
+values ('100080', '100030', '法国进口洋酒', '1', null, '2017-03-25 16:57:05', '2017-03-25 16:57:05');
+
 select * from product_category;

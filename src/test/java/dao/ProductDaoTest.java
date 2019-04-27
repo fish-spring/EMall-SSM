@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import pojo.Product;
 import pojo.page.ProductPage;
+import vo.ProductInfo;
 
 import java.util.List;
 
@@ -44,4 +45,9 @@ public class ProductDaoTest extends BaseTest {
         System.out.println(JSONObject.toJSONString(products));
     }
 
+    @Test
+    public void getInfo(){
+        ProductInfo info = productDao.selectProductInfoByPrimaryKey(30);
+        System.out.println(JSONObject.toJSONString(info));
+    }
 }

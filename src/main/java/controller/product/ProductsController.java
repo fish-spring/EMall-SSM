@@ -7,6 +7,7 @@ import pojo.Product;
 import pojo.page.ProductPage;
 import service.ProductService;
 import service.UserService;
+import vo.ProductVo;
 
 import java.util.Date;
 import java.util.List;
@@ -18,7 +19,7 @@ public class ProductsController {
     private ProductService productService;
 
     @GetMapping
-    public List<Product> getProducts(
+    public List<ProductVo> getProducts(
             // 这些参数都是可选的
             @RequestParam(required = false) Integer shopId,
             @RequestParam(required = false) Integer categoryId,
@@ -44,9 +45,9 @@ public class ProductsController {
             offset = (pageNumber - 1) *  pageSize;
         }
         page.setOffset(offset);
-        List<Product> products =
-                productService.getProductsPageable(page);
-        return products;
+        List<ProductVo> productVos =
+                productService.getProductVosPageable(page);
+        return productVos;
     }
 
     @PostMapping

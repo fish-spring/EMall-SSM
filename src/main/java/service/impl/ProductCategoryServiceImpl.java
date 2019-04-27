@@ -27,16 +27,14 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
         ProductCategoryVo vo = new ProductCategoryVo();
         ProductCategory currentCategory = categoryDao.selectByPrimaryKey(parentId);
+        vo = ProductCategoryVo.getInstance(currentCategory);
+
         List<ProductCategoryVo> childrenVo = new LinkedList<ProductCategoryVo>();
-        vo.setCurrentCategory(currentCategory);
         vo.setChildren(childrenVo);
 
         List<ProductCategory> childrenCategories = categoryDao.selectAllByParentId(parentId);
 
-        if (childrenCategories.size() == 0){
-            return vo;
-        }
-
+        // 递归查询所有子节点
         for (ProductCategory childProductCategory : childrenCategories){
             childrenVo.add(selectAllByParentIdAndRecursive(childProductCategory.getId()));
         }

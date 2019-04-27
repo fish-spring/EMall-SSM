@@ -38,3 +38,19 @@ order by price desc
 limit 30
 offset 3
 ;
+
+select id, shop_id, price, category_id, name, detail, stock
+from product
+where true
+  and id = 30
+;
+
+select count(id)
+from product_remark
+where product_id = 30
+;
+
+update product
+set
+price = 200
+where id = 30;

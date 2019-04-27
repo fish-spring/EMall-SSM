@@ -3,7 +3,7 @@
 <mapper namespace="dao.ProductDao" >
 
     <sql id="Base_Column_List" >
-          id,shop_id,category_id, name,subtitle,image_url,detail,price,stock,status,create_time,update_time
+          id,shop_id,category_id, name,subtitle,image_url,detail,price,stock,status
     </sql>
 
     <select id="selectByPrimaryKey" resultType="pojo.Product" parameterType="java.lang.Integer" >

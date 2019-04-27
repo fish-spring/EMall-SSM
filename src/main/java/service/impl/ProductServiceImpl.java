@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 import pojo.Product;
 import pojo.page.ProductPage;
 import service.ProductService;
+import vo.ProductInfo;
+import vo.ProductVo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,12 +23,28 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
-    public Product getProductById(Integer id) {
-        return productDao.selectByPrimaryKey(id);
+    public ProductVo getProductVoById(Integer id) {
+        Product product = productDao.selectByPrimaryKey(id);
+        ProductInfo productInfo = productDao.selectProductInfoByPrimaryKey(id);
+
+        ProductVo vo = ProductVo.getInstance(product);
+        vo.getInfoFromProductInfo(productInfo);
+        return vo;
     }
 
-    public List<Product> getProductsPageable(ProductPage page) {
+    public List<ProductVo> getProductVosPageable(ProductPage page) {
         List<Product> products = productDao.selectListPageable(page);
-        return products;
+        List<ProductVo> productVos = new ArrayList<>();
+
+        for (Product product : products) {
+            ProductInfo productInfo = productDao.selectProductInfoByPrimaryKey(product.getId());
+
+            ProductVo productVo = ProductVo.getInstance(product);
+            productVo.getInfoFromProductInfo(productInfo);
+
+            productVos.add(productVo);
+        }
+
+        return productVos;
     }
 }

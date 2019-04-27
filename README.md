@@ -1,5 +1,7 @@
-- maven插件
-- mbg.xml
-- 然后就可以自动的生成从数据库中读取并直接生成
+打包
+```bash
+$ maven install
+$ maven 
 
-配置好之后直接在IDE中点击运行就行了
+```
+

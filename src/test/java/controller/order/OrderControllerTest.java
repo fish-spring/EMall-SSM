@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import pojo.Product;
+import vo.UserOrderItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,20 +20,30 @@ import static org.junit.Assert.*;
 public class OrderControllerTest extends MockMvcBaseTest {
 
     @Test
-    public void getProduct() throws Exception{
+    public void buyProducts() throws Exception{
         ResultMatcher isOk = MockMvcResultMatchers.status().is(200);
 
-        List<Product> products = new ArrayList<>();
-        Product product = new Product();
-        product.setId(33);
-        products.add(product);
-        products.add(product);
-        products.add(product);
+        List<UserOrderItem> orderItems = new ArrayList<>();
+
+        UserOrderItem item = new UserOrderItem();
+        item.setAddress("WinterFall");
+        item.setCount(1);
+        item.setProductId(33);
+        item.setShippingUsername("Jon Snow");
+        orderItems.add(item);
+        UserOrderItem item2 = new UserOrderItem();
+        item2.setAddress("WinterFall");
+        item2.setCount(2);
+        item2.setProductId(30);
+        item2.setShippingUsername("Aray Stark");
+        orderItems.add(item2);
+
 
         MockHttpServletRequestBuilder builder =
                 MockMvcRequestBuilders.post("/orders")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JSONObject.toJSONString(products));
+                        .header("Authorization","bearer kEHNWjRqKwIO39xd6FYi0vR0sOUKBe")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JSONObject.toJSONString(orderItems));
 
         mockMvc.perform(builder)
                 .andDo(MockMvcResultHandlers.print())

@@ -64,9 +64,12 @@ create table order_detail(
 
     product_count int unsigned default 1 not null comment '商品数量',
 
+    user_id int unsigned not null comment '购买用户id',
+
     -- 这个地址是可变的，所以没有通过外键关联，它是独立的
     shipping_username varchar(20) comment '收货人姓名',
     address varchar(300) null comment '详细地址',
 
     primary key (id)
 );
+select * from order_detail;

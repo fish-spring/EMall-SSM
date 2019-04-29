@@ -8,6 +8,14 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <!-- 配置SpringMVC拦截器，可以配置多个interceptor穿行执行 -->
     <mvc:interceptors>
+        <!-- 验证用户的登录状态 -->
+        <mvc:interceptor>
+            <!-- 拦截该路由以及它的子路由下的所有请求 -->
+            <mvc:mapping path="/**"/>
+
+            <!-- 配置跨域请求头 -->
+            <bean class="interceptor.Verifier"/>
+        </mvc:interceptor>
         <mvc:interceptor>
             <!-- 拦截该路由以及它的子路由下的所有请求 -->
             <mvc:mapping path="/**"/>
@@ -15,5 +23,7 @@
             <!-- 配置跨域请求头 -->
             <bean class="interceptor.Cors"/>
         </mvc:interceptor>
+
+
     </mvc:interceptors>
 </beans>

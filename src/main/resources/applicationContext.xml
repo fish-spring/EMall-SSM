@@ -10,7 +10,7 @@
      http://www.springframework.org/schema/mvc
      http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="service, controller"/>
+    <context:component-scan base-package="service, controller, interceptor"/>
     <!-- 这个注解是让Spring扫描所有被@Component（以及它的子注解）所标注的类-->
 
     <!--<context:annotation-config/>-->

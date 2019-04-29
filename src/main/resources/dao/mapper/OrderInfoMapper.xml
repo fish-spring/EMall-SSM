@@ -47,5 +47,17 @@
         </trim>
     </insert>
 
+    <update id="updateSelective" parameterType="pojo.OrderInfo">
+        update order_info
+        <set>
+            <if test="qrcode != null" >
+                qrcode = #{qrcode},
+            </if>
+            <if test="isSuccess != null" >
+                is_success = #{isSuccess}
+            </if>
+        </set>
+        where id=#{id};
+    </update>
 
 </mapper>

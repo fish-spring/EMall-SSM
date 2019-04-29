@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.OrderDetailDao" >
+
+    <insert id="insertSelective" parameterType="pojo.OrderDetail"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
+        insert into order_detail
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="orderInfoId != null" >
+                order_info_id,
+            </if>
+            <if test="productId != null" >
+                product_id,
+            </if>
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="productPrice != null" >
+                product_price,
+            </if>
+            <if test="productCount != null" >
+                product_count,
+            </if>
+            <if test="shopId != null" >
+                shop_id,
+            </if>
+
+            <if test="shippingUsername != null" >
+                shipping_username,
+            </if>
+            <if test="address != null" >
+                address
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="orderInfoId != null" >
+                #{orderInfoId,jdbcType=INTEGER},
+            </if>
+            <if test="productId != null" >
+                #{productId,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null" >
+                #{productId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null" >
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="productCount != null" >
+                #{productCount,jdbcType=VARCHAR},
+            </if>
+            <if test="shopId != null" >
+                #{shopId,jdbcType=VARCHAR},
+            </if>
+            <if test="shippingUsername != null" >
+                #{shippingUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                #{address,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+</mapper>

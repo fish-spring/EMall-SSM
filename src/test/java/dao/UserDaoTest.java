@@ -21,6 +21,13 @@ public class UserDaoTest extends DaoBaseTest {
         System.out.println(JSONObject.toJSONString(user));
     }
 
+    // 通过token来查询一个用户
+    @Test
+    public void selectByToken(){
+        User user = userDao.selectByToken("kEHNWjRqKwIO39xd6FYi0vR0sOUKBe");
+        System.out.println(JSONObject.toJSONString(user));
+    }
+
     // 查看一个邮箱是否已经被注册了
     @Test
     public void checkEmail(){

@@ -8,9 +8,10 @@ import lombok.Setter;
 public class OrderDetail {
     private Integer id;
     private Integer orderInfoId;
-    private Integer ProductId;
+    private Integer productId;
     private Integer productPrice;
     private Integer shopId;
+    private Integer userId;
     private Integer productCount;
     private String shippingUsername;
     private String address;

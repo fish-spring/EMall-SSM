@@ -8,8 +8,9 @@ import pojo.Product;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductInfo extends Product {
+public class ProductInfo {
     private Integer salesCount;
     private Integer remarkCount;
     private Double avgScore;
+    private String shopName;
 }

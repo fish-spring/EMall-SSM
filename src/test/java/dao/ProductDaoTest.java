@@ -6,8 +6,10 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import pojo.Product;
 import pojo.page.ProductPage;
+import vo.ProductDiscount;
 import vo.ProductInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -36,6 +38,16 @@ public class ProductDaoTest extends BaseTest {
     }
 
     @Test
+    public void selectBtIds(){
+        List<Integer> ids = new ArrayList<>();
+        ids.add(31);
+        ids.add(32);
+        List<Product> products = productDao.selectByIds(ids);
+        System.out.println(JSONObject.toJSONString(products));
+        assertTrue(products.size() > 0);
+    }
+
+    @Test
     public void selectPageable(){
         ProductPage page = new ProductPage();
         page.setLimit(2);
@@ -49,5 +61,17 @@ public class ProductDaoTest extends BaseTest {
     public void getInfo(){
         ProductInfo info = productDao.selectProductInfoByPrimaryKey(30);
         System.out.println(JSONObject.toJSONString(info));
+    }
+
+    @Test
+    public void getSlides(){
+        List<Product> slides = productDao.selectSlides();
+        System.out.println(JSONObject.toJSONString(slides));
+    }
+
+    @Test
+    public void getSeckill(){
+        List<ProductDiscount> products = productDao.selectSeckill();
+        System.out.println(JSONObject.toJSONString(products));
     }
 }

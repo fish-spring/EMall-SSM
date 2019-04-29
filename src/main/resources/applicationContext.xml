@@ -22,4 +22,7 @@
 
     <!-- 跨域请求相关的 -->
     <import resource="classpath:interceptor.xml"/>
+
+    <!-- 自定义的bean-->
+    <import resource="classpath:beans.xml"/>
 </beans>

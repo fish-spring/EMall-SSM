@@ -2,7 +2,7 @@ use e_mall_ssm;
 
 DROP TABLE IF EXISTS product;
 CREATE TABLE product (
-    id int unsigned NOT NULL AUTO_INCREMENT COMMENT '商品id',
+    id int unsigned auto_increment COMMENT '商品id',
 
     shop_id int unsigned not null comment '发布商品的店家id',
     category_id int unsigned NOT NULL COMMENT '分类id,对应product_category表的主键',
@@ -10,6 +10,8 @@ CREATE TABLE product (
     subtitle varchar(200) COMMENT '商品副标题',
     image_url varchar(500) COMMENT '产品主图,url相对地址',
     detail text COMMENT '商品详情',
+
+    -- 可以自接以分为单位吗，之前太蠢了
     price decimal(20,2) unsigned default 0 NOT NULL COMMENT '价格,单位-元保留两位小数',
     stock int unsigned COMMENT '库存数量',
     status tinyint unsigned DEFAULT 1 COMMENT '商品状态.1-在售 2-下架 3-删除',
@@ -20,6 +22,8 @@ CREATE TABLE product (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
+alter table product change price price int unsigned default 0
+     not null comment '价格，单位为分';
 
 insert into product(shop_id, price, category_id, name, detail, stock)
 values (3, 22, 10002, '方便面', null, 33);
@@ -52,5 +56,29 @@ where product_id = 30
 
 update product
 set
-price = 200
-where id = 30;
+price = 3000
+where id < 37;
+
+update product
+set
+image_url = 'static/img/nav/1.jpg'
+where id = 32
+;
+
+update product
+set
+    image_url = 'static/img/nav/2.jpg'
+where id = 35
+;
+
+update product
+set
+    image_url = 'static/img/nav/3.jpg'
+where id = 37
+;
+
+update product
+set
+detail = '完美的方便面，保证你吃了一口还想吃！买不了吃亏，买不了上当！！'
+where id = 30
+;

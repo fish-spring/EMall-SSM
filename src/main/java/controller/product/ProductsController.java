@@ -1,5 +1,6 @@
 package controller.product;
 
+import dao.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,8 @@ import java.util.List;
 public class ProductsController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ProductDao productDao;
 
     @GetMapping
     public List<ProductVo> getProducts(
@@ -48,6 +51,11 @@ public class ProductsController {
         List<ProductVo> productVos =
                 productService.getProductVosPageable(page);
         return productVos;
+    }
+
+    @RequestMapping(value = "/{productId}", method = RequestMethod.GET)
+    public Product getProduct(@PathVariable Integer productId){
+        return productDao.selectByPrimaryKey(productId);
     }
 
     @PostMapping

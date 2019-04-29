@@ -22,7 +22,7 @@ public class Product {
     private String subtitle;
     private String imageUrl;
     private String detail;
-    private BigDecimal price;
+    private Integer price;
     private Integer stock;
     private Integer status;
     private Date createTime;

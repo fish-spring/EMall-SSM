@@ -12,6 +12,33 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
+    <select id="selectByIds" parameterType="java.util.List"
+            resultType="pojo.Product">
+        select <include refid="Base_Column_List" /> from product
+        where id in
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+    <select id="selectSlides" resultType="pojo.Product" >
+        select product_id as id, p.image_url as imageUrl
+        from product_slides as slides
+           inner join product as p
+           on slides.product_id = p.id
+        ;
+    </select>
+
+    <select id="selectSeckill" resultType="vo.ProductDiscount" >
+         select product_id as id, discount, shop_id, price, category_id, name, detail, stock
+         from product_seckill as seckill
+           inner join product as p
+           on seckill.product_id = p.id
+         ;
+    </select>
+
     <insert id="insertSelective" parameterType="pojo.Product"
             useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
         insert into product

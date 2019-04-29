@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.OrderInfoDao" >
+
+    <insert id="insertSelective" parameterType="pojo.OrderInfo"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
+        insert into order_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="paymentMoney != null" >
+                payment_money,
+            </if>
+            <if test="paymentMethod != null" >
+                payment_method,
+            </if>
+            <if test="paymentOrderId != null" >
+                payment_order_id,
+            </if>
+            <if test="qrcode != null" >
+                qrcode,
+            </if>
+            <if test="isSuccess != null" >
+                is_success
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="paymentMoney != null" >
+                #{paymentMoney,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentMethod != null" >
+                #{paymentMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentOrderId != null" >
+                #{paymentOrderId,jdbcType=VARCHAR},
+            </if>
+            <if test="qrcode != null" >
+                #{qrcode,jdbcType=VARCHAR},
+            </if>
+            <if test="isSuccess != null" >
+                #{isSuccess,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </insert>
+
+
+</mapper>

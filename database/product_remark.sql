@@ -5,6 +5,7 @@ CREATE TABLE product_remark (
   id int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Id',
 
   product_id int unsigned not null comment '商品的id',
+  -- order_id
   user_id int unsigned not null comment '评论的的用户id',
   score tinyint unsigned not null comment '评分, 1 - 10 之间',
   content varchar(1000) comment '评论内容',
@@ -21,6 +22,11 @@ values (30, 2, 8, '还行');
 insert into product_remark (product_id, user_id, score, content)
 values (30, 4, 7, '还行');
 
+insert into product_remark (product_id, user_id, score, content)
+values (32, 1, 2, '根本不能用！！');
+
+insert into product_remark (product_id, user_id, score, content)
+values (33, 66, 9, '非常棒');
 
 select count(id) as salesCount, avg(score) as avgScore
 from product_remark
